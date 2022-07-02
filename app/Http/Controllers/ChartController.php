@@ -28,12 +28,13 @@ class ChartController extends Controller
     }
     public function report(Request $request)
     {
+      
         $student = DB::table('students')
         ->join('users', 'students.school_id', 'users.id')
         ->select('students.*', 'users.name as school',)
         ->where([['session', $request->session], ['students.upazila_name', $request->upazila], ['section', $request->section], ['school_id', $request->school], ['classname', $request->class], ['class_roll', $request->roll]])
             ->first();
-
+      
         $healths = DB::table('student_healths')->where('auto_id', $student->id)->get();
 
         $pdf = \PDF::loadView('report', compact('healths', 'student'));
@@ -41,7 +42,7 @@ class ChartController extends Controller
         $pdf->setOption('javascript-delay', 1000);
         $pdf->setOption('enable-smart-shrinking', true);
         $pdf->setOption('no-stop-slow-scripts', true);
-        return $pdf->stream('a.pdf');
+        return $pdf->download('a.pdf');
     }
     public function upazilaShow()
     {
@@ -73,6 +74,7 @@ class ChartController extends Controller
     public function ageReport(Request $request)
     {
         $name = "বয়স";
+     
         $value = $request->age;
         $students = DB::table('student_healths')->whereOr('age', $request->age)->whereOr('age', bn2en($request->age))->get();
         return view('upazila_report', compact('students','name', 'value'));

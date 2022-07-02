@@ -33,12 +33,12 @@
                         <p>তারিখ : {{ en2bn(Carbon\Carbon::now()->format('d.m.Y')) }}</p>
                     </div>
                     <div class="col-12 row mt-5">
-                        <div class="col-8 p-5">
+                        <div class="col-12 p-3">
 
-                            <table>
+                            <table class="mb-3">
                                 <tr>
-                                    <td style="width:1.5in">{{$name}} </td>
-                                    <td>{{ $value }}</td>
+                                    <td style="width:1.5in">{{$name}}ঃ </td>
+                                    <td>{{ en2bn($value) }}</td>
                                 </tr>
                                 {{-- <tr>
                                     <td style="width:1.5in"> বিদ্যালয় সংখ্যাঃ </td>
@@ -51,13 +51,114 @@
                                     <td>{{ en2bn($students->count()) }}</td>
 
                                 </tr>
-                                 <tr>
-                                    <td style="width:1.5in">পরিষ্কার পরিছন্নতাঃ</td> 
-                                 <td>   {{  en2bn($students->where('neat_clean', '!=', 0)->where('neat_clean', '!=', null)->count()) }}/{{ en2bn( $students->where('neat_clean', 0)->count()) }}
-                                   </td>
-
-                                </tr>
                             </table>
+                            <table class="table table-bordered m-5 p-4" >
+  <thead>
+    <tr>
+        <th scope="col">সংখ্যাঃ</th>
+      <th scope="col">স্বাস্থ্য বিবরণ</th>
+      <th scope="col">শিক্ষার্থীর সংখ্যা (মান শূন্যের অধিক) </th>
+      <th scope="col">শিক্ষার্থীর সংখ্যা (মান শূন্য)</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">১</th>
+      <td >পরিষ্কার পরিছন্নতাঃ</td> 
+      <td>{{  en2bn($students->where('neat_clean', '!=', 0)->where('neat_clean', '!=', null)->count()) }}</td>
+      <td>{{ en2bn( $students->where('neat_clean', 0)->count()) }}</td>
+    
+    </tr>
+    <tr>
+      <th scope="row">২</th>
+      <td >মোয়াকঃ</td> 
+      <td>{{  en2bn($students->where('muac', '!=', 0)->where('muac', '!=', null)->count()) }}</td>
+      <td>{{ en2bn( $students->where('muac', 0)->count()) }}</td>
+    </tr>
+    <tr>
+      <th scope="row">৩</th>
+        <td>চর্ম রোগঃ</td> 
+        <td>   {{  en2bn($students->where('skin_disease', '!=', 0)->where('skin_disease', '!=', null)->count()) }}</td>
+        <td>{{ en2bn( $students->where('skin_disease', 0)->count()) }}</td>
+
+    </tr>
+     <tr>
+      <th scope="row">৪</th>
+        <td>কাশিঃ</td> 
+        <td>   {{  en2bn($students->where('cough', '!=', 0)->where('cough', '!=', null)->count()) }}</td>
+        <td>{{ en2bn( $students->where('cough', 0)->count()) }}</td>
+
+    </tr>
+     <tr>
+      <th scope="row">৫</th>
+        <td >হাঁপানিঃ</td> 
+        <td>   {{  en2bn($students->where('asthma', '!=', 0)->where('asthma', '!=', null)->count()) }}</td>
+        <td>{{ en2bn( $students->where('asthma', 0)->count()) }}</td>
+
+    </tr>
+     <tr>
+      <th scope="row">৬</th>
+        <td >ডায়ারিয়াঃ</td> 
+        <td>   {{  en2bn($students->where('diarrhoea', '!=', 0)->where('diarrhoea', '!=', null)->count()) }}</td>
+        <td>{{ en2bn( $students->where('diarrhoea', 0)->count()) }}</td>
+
+    </tr>
+     <tr>
+      <th scope="row">৭</th>
+        <td >জন্ডিসঃ</td> 
+        <td>   {{  en2bn($students->where('jaundice', '!=', 0)->where('jaundice', '!=', null)->count()) }}</td>
+        <td>{{ en2bn( $students->where('jaundice', 0)->count()) }}</td>
+
+    </tr>
+     <tr>
+      <th scope="row">৮</th>
+        <td>সংক্রমণঃ</td> 
+        <td>   {{  en2bn($students->where('infection', '!=', 0)->where('infection', '!=', null)->count()) }}</td>
+        <td>{{ en2bn( $students->where('infection', 0)->count()) }}</td>
+
+    </tr>
+     <tr>
+      <th scope="row">৯</th>
+        <td >ইপিআই টি.টি</td> 
+        <td>   {{  en2bn($students->where('epi_tt', '!=', 0)->where('epi_tt', '!=', null)->count()) }}</td>
+        <td>{{ en2bn( $students->where('epi_tt', 0)->count()) }}</td>
+
+    </tr>
+     <tr>
+      <th scope="row">১০</th>
+        <td >চোখ পরীক্ষাঃ</td> 
+        <td>   {{  en2bn($students->where('eye_test', '!=', 0)->where('eye_test', '!=', null)->count()) }}</td>
+        <td>{{ en2bn( $students->where('eye_test', 0)->count()) }}</td>
+
+    </tr>
+    <tr>
+      <th scope="row">১১</th>
+        <td >রক্তাল্পতাঃ</td> 
+        <td>   {{  en2bn($students->where('anemia', '!=', 0)->where('anemia', '!=', null)->count()) }}</td>
+        <td>{{ en2bn( $students->where('anemia', 0)->count()) }}</td>
+
+    </tr>
+    <tr>
+      <th scope="row">১২</th>
+        <td >পালস</td> 
+        <td>   {{  en2bn($students->where('pulse', '!=', 0)->where('pulse', '!=', null)->count()) }}</td>
+        <td>{{ en2bn( $students->where('pulse', 0)->count()) }}</td>
+
+    </tr>
+    <tr>
+      <th scope="row">১৩</th>
+        <td>সামগ্রিক</td> 
+        <td>   {{  en2bn($students->where('overall', '!=', 0)->where('overall', '!=', null)->count()) }}</td>
+        <td>{{ en2bn( $students->where('overall', 0)->count()) }}</td>
+
+    </tr>
+    
+  </tbody>
+ 
+</table>  
+ 
+                          
 
                         </div>
                     </div>
@@ -89,6 +190,24 @@
                                 ['Jaundice', {{ $students->where('jaundice', '!=', 0)->where('jaundice', '!=', null)->count() }},
                                      {{ $students->where('jaundice', 0)->count() }}
                                 ],
+                                 ['Infection', {{ $students->where('infection', '!=', 0)->where('infection', '!=', null)->count() }},
+                                    {{ $students->where('infection',0)->count() }}
+                                ],
+                                ['EPI TT', {{ $students->where('epi_tt', '!=', 0)->where('epi_tt', '!=', null)->count() }},
+                                    {{ $students->where('epi_tt',0)->count() }}
+                                ],
+                                ['Eye Test', {{ $students->where('eye_test', '!=', 0)->where('eye_test', '!=', null)->count() }},
+                                    {{ $students->where('eye_test',0)->count() }}
+                                ],
+                                ['Anemia', {{ $students->where('anemia', '!=', 0)->where('anemia', '!=', null)->count() }},
+                                    {{ $students->where('anemia',0)->count() }}
+                                ],
+                                ['Pulse', {{ $students->where('pulse', '!=', 0)->where('pulse', '!=', null)->count() }},
+                                    {{ $students->where('pulse',0)->count() }}
+                                ],
+                                 ['Overall', {{ $students->where('overall', '!=', 0)->where('overall', '!=', null)->count() }},
+                                    {{ $students->where('overall',0)->count() }}
+                                ],
                             ]);
                            var view = new google.visualization.DataView(data);
                             view.setColumns([0, 1,
@@ -106,7 +225,7 @@
                                     width: '70%'
                                 },
                                  width: 1000,
-                                height: 400,
+                                height: 1200,
                                 isStacked: true,
                                 hAxis: {
                                     title: 'Total Students',
@@ -126,109 +245,9 @@
                         });
                         google.charts.setOnLoadCallback(drawChart);
 
-                        function drawChart() {
-                            var data = google.visualization.arrayToDataTable([
-                                ['Disease', 'Has Marks', {
-                                    role: 'style'
-                                }],
-                                // ['Total Students',{{ $students->count() }},{{ $students->count() }},{{ $students->count() }}],
-                                ['Neat Clean', {{ $students->where('neat_clean', '!=', 0)->where('neat_clean', '!=', null)->count() }},
-                                    '#b87333'
-                                ],
-                                ['MUAC', {{ $students->where('muac', '!=', 0)->where('muac', '!=', null)->count() }}, '#ebc334'],
-                                ['Skin Disease',
-                                    {{ $students->where('skin_disease', '!=', 0)->where('skin_disease', '!=', null)->count() }},
-                                    '#b87333'
-                                ],
-                                ['Cough', {{ $students->where('cough', '!=', 0)->where('cough', '!=', null)->count() }}, '#c6eb34'],
-                                ['Asthma', {{ $students->where('asthma', '!=', 0)->where('asthma', '!=', null)->count() }}, '#6beb34'],
-                                ['Diarrhoea', {{ $students->where('diarrhoea', '!=', 0)->where('diarrhoea', '!=', null)->count() }},
-                                    '#34eb8f'
-                                ],
-                                ['Jaundice', {{ $students->where('jaundice', '!=', 0)->where('jaundice', '!=', null)->count() }},
-                                    '#34e2eb'
-                                ],
-                            ]);
+                      
 
-                            var view = new google.visualization.DataView(data);
-                            view.setColumns([0, 1,
-                                {
-                                    calc: "stringify",
-                                    sourceColumn: 1,
-                                    type: "string",
-                                    role: "annotation"
-                                },
-                                2
-                            ]);
-
-                            var options = {
-                                title: "Density of Precious Metals, in g/cm^3",
-                                width: 600,
-                                height: 400,
-                                bar: {
-                                    groupWidth: "95%"
-                                },
-                                legend: {
-                                    position: "none"
-                                },
-                            };
-                            var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
-                            chart.draw(view, options);
-                        }
-                    </script>
-
-                    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                    <script type="text/javascript">
-                        google.charts.load("current", {
-                            packages: ['corechart']
-                        });
-                        google.charts.setOnLoadCallback(drawChart);
-
-                        function drawChart() {
-                            var data = google.visualization.arrayToDataTable([
-                                ['Disease', 'Zero', {
-                                    role: 'style'
-                                }],
-                                // ['Total Students',{{ $students->count() }},{{ $students->count() }},{{ $students->count() }}],
-                                ['Neat Clean', {{ $students->where('neat_clean', 0)->count() }}, '#b87333'],
-                                ['MUAC', {{ $students->where('muac', 0)->count() }}, '#ebc334'],
-                                ['Skin Disease', {{ $students->where('skin_disease', 0)->count() }}, '#b87333'],
-                                ['Cough', {{ $students->where('cough', 0)->count() }}, '#c6eb34'],
-                                ['Asthma', {{ $students->where('asthma', 0)->count() }}, '#6beb34'],
-                                ['Diarrhoea', {{ $students->where('diarrhoea', 0)->count() }}, '#34eb8f'],
-                                ['Jaundice', {{ $students->where('jaundice', 0)->count() }}, '#34e2eb'],
-
-                            ]);
-                            var view = new google.visualization.DataView(data);
-                            view.setColumns([0, 1,
-                                {
-                                    calc: "stringify",
-                                    sourceColumn: 1,
-                                    type: "string",
-                                    role: "annotation"
-                                },
-                                2, {
-                                    calc: "stringify",
-                                    sourceColumn: 2,
-                                    type: "string",
-                                    role: "annotation"
-                                },
-                            ]);
-
-                            var options = {
-                                title: "Density of Precious Metals, in g/cm^3",
-                                width: 800,
-                                height: 500,
-                                bar: {
-                                    groupWidth: "95%"
-                                },
-                                legend: {
-                                    position: "none"
-                                },
-                            };
-                            var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_material"));
-                            chart.draw(view, options);
-                        }
+                 
 
                         function printDiv(divName) {
                             var printContents = document.getElementById(divName).innerHTML;

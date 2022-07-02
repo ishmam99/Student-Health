@@ -22,7 +22,7 @@
         <form action="{{route('age.report')}}" method="POST">
           @csrf
           
-      <select name="upazila" class="form-control float-right" id="age" >
+      <select name="age" class="form-control float-right" id="age" >
         @for($age=4;$age<20;$age++)
             <option value="{{$age}}">{{en2bn($age)}} বছর</option>
         @endfor
