@@ -69,7 +69,8 @@ class ChartController extends Controller
         $name = "উপজেলা";
         $value = $request->upazila;
         $students = DB::table('student_healths')->where('upazila_name',$request->upazila)->get();
-       return view('upazila_report',compact('students', 'name', 'value'));
+        $student = $this->destructure($students);
+       return view('upazila_report',compact('students', 'name', 'value','student'));
     }
     public function ageReport(Request $request)
     {
@@ -85,7 +86,8 @@ class ChartController extends Controller
         $name = "শিক্ষা প্রতিষ্ঠান";
         $school = User::findOrfail($request->school);
         $value = $school->name;
-        $students = DB::table('student_healths')->where('school_id', $request->school)->get();
+        $student = DB::table('student_healths')->where('school_id', $request->school)->get();
+        $students = $this->destructure($student);
         return view('upazila_report', compact('students', 'name','value'));
     }
     public function calendarReport(Request $request)
@@ -94,5 +96,42 @@ class ChartController extends Controller
         $value = $request->year;
         $students = DB::table('student_healths')->where('year', $request->year)->get();
         return view('upazila_report', compact('students','name', 'value'));
+    }
+    public function destructure($students)
+    {
+        $neat_clean =[];
+        $muac =[];
+        $skin_disease =[];
+        $cough =[];
+        $asthma = [];
+        $diarrhoea =[];
+        $jaundice =[];
+        $infection = [];
+        $epi_tt =[];
+        $eye_test =[];
+        $anemia =[];
+        $pulse =[];
+        $overall =[];
+        $years = [];
+       for($year = now()->format('Y')-4;$year<=now()->format('Y');$year++)
+       {
+        $neat_clean[] =  $students->where('neat_clean', '!=', 0)->where('neat_clean', '!=', null)->where('year',en2bn($year))->count();
+        $muac[] =  $students->where('muac', '!=', 0)->where('muac', '!=', null)->where('year',en2bn($year))->count();
+        $skin_disease[] =  $students->where('skin_disease', '!=', 0)->where('skin_disease', '!=', null)->where('year',en2bn($year))->count();
+        $cough[] =  $students->where('cough', '!=', 0)->where('cough', '!=', null)->where('year',en2bn($year))->count();
+        $asthma[] =  $students->where('asthma', '!=', 0)->where('asthma', '!=', null)->where('year',en2bn($year))->count();
+        $diarrhoea[] =  $students->where('diarrhoea', '!=', 0)->where('diarrhoea', '!=', null)->where('year',en2bn($year))->count();
+        $jaundice[] =  $students->where('jaundice', '!=', 0)->where('jaundice', '!=', null)->where('year',en2bn($year))->count();
+        $infection[] =  $students->where('infection', '!=', 0)->where('infection', '!=', null)->where('year',en2bn($year))->count();
+        $epi_tt[] =  $students->where('epi_tt', '!=', 0)->where('epi_tt', '!=', null)->where('year',en2bn($year))->count();
+        $eye_test[] =  $students->where('eye_test', '!=', 0)->where('eye_test', '!=', null)->where('year',en2bn($year))->count();
+        $anemia[] =  $students->where('anemia', '!=', 0)->where('anemia', '!=', null)->where('year',en2bn($year))->count();
+        $pulse[] =  $students->where('pulse', '!=', 0)->where('pulse', '!=', null)->where('year',en2bn($year))->count();
+        $overall[] =  $students->where('overall', '!=', 0)->where('overall', '!=', null)->where('year',en2bn($year))->count();
+        $years[] = $year;
+       }
+       $all=[$years,$neat_clean,$muac,$skin_disease,$cough,$asthma,$diarrhoea,$jaundice,$infection,$epi_tt,$eye_test,$anemia,$pulse,$overall];
+      
+       return $all;
     }
 }
