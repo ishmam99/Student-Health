@@ -57,8 +57,8 @@
     <tr>
         <th scope="col">সংখ্যাঃ</th>
       <th scope="col">স্বাস্থ্য বিবরণ</th>
-      <th scope="col">শিক্ষার্থীর সংখ্যা (মান শূন্যের অধিক) </th>
-      <th scope="col">শিক্ষার্থীর সংখ্যা (মান শূন্য)</th>
+      <th scope="col">শিক্ষার্থীর সংখ্যা </th>
+      {{-- <th scope="col">শিক্ষার্থীর সংখ্যা (মান শূন্য)</th> --}}
      
     </tr>
   </thead>
@@ -67,90 +67,90 @@
       <th scope="row">১</th>
       <td >পরিষ্কার পরিছন্নতাঃ</td> 
       <td>{{  en2bn($students->where('neat_clean', '!=', 0)->where('neat_clean', '!=', null)->count()) }}</td>
-      <td>{{ en2bn( $students->where('neat_clean', 0)->count()) }}</td>
+      {{-- <td>{{ en2bn( $students->where('neat_clean', 0)->count()) }}</td> --}}
     
     </tr>
     <tr>
       <th scope="row">২</th>
       <td >মোয়াকঃ</td> 
       <td>{{  en2bn($students->where('muac', '!=', 0)->where('muac', '!=', null)->count()) }}</td>
-      <td>{{ en2bn( $students->where('muac', 0)->count()) }}</td>
+      {{-- <td>{{ en2bn( $students->where('muac', 0)->count()) }}</td> --}}
     </tr>
     <tr>
       <th scope="row">৩</th>
         <td>চর্ম রোগঃ</td> 
         <td>   {{  en2bn($students->where('skin_disease', '!=', 0)->where('skin_disease', '!=', null)->count()) }}</td>
-        <td>{{ en2bn( $students->where('skin_disease', 0)->count()) }}</td>
+        {{-- <td>{{ en2bn( $students->where('skin_disease', 0)->count()) }}</td> --}}
 
     </tr>
      <tr>
       <th scope="row">৪</th>
         <td>কাশিঃ</td> 
         <td>   {{  en2bn($students->where('cough', '!=', 0)->where('cough', '!=', null)->count()) }}</td>
-        <td>{{ en2bn( $students->where('cough', 0)->count()) }}</td>
+        {{-- <td>{{ en2bn( $students->where('cough', 0)->count()) }}</td> --}}
 
     </tr>
      <tr>
       <th scope="row">৫</th>
         <td >হাঁপানিঃ</td> 
         <td>   {{  en2bn($students->where('asthma', '!=', 0)->where('asthma', '!=', null)->count()) }}</td>
-        <td>{{ en2bn( $students->where('asthma', 0)->count()) }}</td>
+        {{-- <td>{{ en2bn( $students->where('asthma', 0)->count()) }}</td> --}}
 
     </tr>
      <tr>
       <th scope="row">৬</th>
         <td >ডায়ারিয়াঃ</td> 
         <td>   {{  en2bn($students->where('diarrhoea', '!=', 0)->where('diarrhoea', '!=', null)->count()) }}</td>
-        <td>{{ en2bn( $students->where('diarrhoea', 0)->count()) }}</td>
+        {{-- <td>{{ en2bn( $students->where('diarrhoea', 0)->count()) }}</td> --}}
 
     </tr>
      <tr>
       <th scope="row">৭</th>
         <td >জন্ডিসঃ</td> 
         <td>   {{  en2bn($students->where('jaundice', '!=', 0)->where('jaundice', '!=', null)->count()) }}</td>
-        <td>{{ en2bn( $students->where('jaundice', 0)->count()) }}</td>
+        {{-- <td>{{ en2bn( $students->where('jaundice', 0)->count()) }}</td> --}}
 
     </tr>
      <tr>
       <th scope="row">৮</th>
         <td>সংক্রমণঃ</td> 
         <td>   {{  en2bn($students->where('infection', '!=', 0)->where('infection', '!=', null)->count()) }}</td>
-        <td>{{ en2bn( $students->where('infection', 0)->count()) }}</td>
+        {{-- <td>{{ en2bn( $students->where('infection', 0)->count()) }}</td> --}}
 
     </tr>
      <tr>
       <th scope="row">৯</th>
         <td >ইপিআই টি.টি</td> 
         <td>   {{  en2bn($students->where('epi_tt', '!=', 0)->where('epi_tt', '!=', null)->count()) }}</td>
-        <td>{{ en2bn( $students->where('epi_tt', 0)->count()) }}</td>
+        {{-- <td>{{ en2bn( $students->where('epi_tt', 0)->count()) }}</td> --}}
 
     </tr>
      <tr>
       <th scope="row">১০</th>
         <td >চোখ পরীক্ষাঃ</td> 
         <td>   {{  en2bn($students->where('eye_test', '!=', 0)->where('eye_test', '!=', null)->count()) }}</td>
-        <td>{{ en2bn( $students->where('eye_test', 0)->count()) }}</td>
+        {{-- <td>{{ en2bn( $students->where('eye_test', 0)->count()) }}</td> --}}
 
     </tr>
     <tr>
       <th scope="row">১১</th>
         <td >রক্তাল্পতাঃ</td> 
         <td>   {{  en2bn($students->where('anemia', '!=', 0)->where('anemia', '!=', null)->count()) }}</td>
-        <td>{{ en2bn( $students->where('anemia', 0)->count()) }}</td>
+        {{-- <td>{{ en2bn( $students->where('anemia', 0)->count()) }}</td> --}}
 
     </tr>
     <tr>
       <th scope="row">১২</th>
         <td >পালস</td> 
         <td>   {{  en2bn($students->where('pulse', '!=', 0)->where('pulse', '!=', null)->count()) }}</td>
-        <td>{{ en2bn( $students->where('pulse', 0)->count()) }}</td>
+        {{-- <td>{{ en2bn( $students->where('pulse', 0)->count()) }}</td> --}}
 
     </tr>
     <tr>
       <th scope="row">১৩</th>
         <td>সামগ্রিক</td> 
         <td>   {{  en2bn($students->where('overall', '!=', 0)->where('overall', '!=', null)->count()) }}</td>
-        <td>{{ en2bn( $students->where('overall', 0)->count()) }}</td>
+        {{-- <td>{{ en2bn( $students->where('overall', 0)->count()) }}</td> --}}
 
     </tr>
     
@@ -173,40 +173,40 @@
 
                         function drawStacked() {
                             var data = google.visualization.arrayToDataTable([
-                                ['Health Issues', 'With Marks', 'Without Marks'],
-                                ['Neat Clean', {{ $students->where('neat_clean', '!=', 0)->where('neat_clean', '!=', null)->count() }},{{ $students->where('neat_clean', 0)->count() }}
+                                ['Health Issues', 'With Marks', 'Total Students'],
+                                ['Neat Clean', {{ $students->where('neat_clean', '!=', 0)->where('neat_clean', '!=', null)->count() }},{{ $students->count() }}
                                 
                                 ],
-                                ['MUAC', {{ $students->where('muac', '!=', 0)->where('muac', '!=', null)->count() }},{{ $students->where('muac', 0)->count() }} ],
+                                ['MUAC', {{ $students->where('muac', '!=', 0)->where('muac', '!=', null)->count() }},{{ $students->count() }} ],
                                 ['Skin Disease',
-                                    {{ $students->where('skin_disease', '!=', 0)->where('skin_disease', '!=', null)->count() }},  {{ $students->where('skin_disease',  0)->count() }}
+                                    {{ $students->where('skin_disease', '!=', 0)->where('skin_disease', '!=', null)->count() }},  {{ $students->count() }}
                                     
                                 ],
-                                ['Cough', {{ $students->where('cough', '!=', 0)->where('cough', '!=', null)->count() }},{{ $students->where('cough', 0)->count() }} ],
-                                ['Asthma', {{ $students->where('asthma', '!=', 0)->where('asthma', '!=', null)->count() }}, {{ $students->where('asthma', 0)->count() }} ],
+                                ['Cough', {{ $students->where('cough', '!=', 0)->where('cough', '!=', null)->count() }},{{ $students->count() }} ],
+                                ['Asthma', {{ $students->where('asthma', '!=', 0)->where('asthma', '!=', null)->count() }}, {{ $students->count() }} ],
                                 ['Diarrhoea', {{ $students->where('diarrhoea', '!=', 0)->where('diarrhoea', '!=', null)->count() }},
-                        {{ $students->where('diarrhoea', 0)->count() }}
+                        {{ $students->count() }}
                                 ],
                                 ['Jaundice', {{ $students->where('jaundice', '!=', 0)->where('jaundice', '!=', null)->count() }},
-                                     {{ $students->where('jaundice', 0)->count() }}
+                                     {{ $students->count() }}
                                 ],
                                  ['Infection', {{ $students->where('infection', '!=', 0)->where('infection', '!=', null)->count() }},
-                                    {{ $students->where('infection',0)->count() }}
+                                    {{ $students->count() }}
                                 ],
                                 ['EPI TT', {{ $students->where('epi_tt', '!=', 0)->where('epi_tt', '!=', null)->count() }},
-                                    {{ $students->where('epi_tt',0)->count() }}
+                                    {{ $students->count() }}
                                 ],
                                 ['Eye Test', {{ $students->where('eye_test', '!=', 0)->where('eye_test', '!=', null)->count() }},
-                                    {{ $students->where('eye_test',0)->count() }}
+                                    {{ $students->count() }}
                                 ],
                                 ['Anemia', {{ $students->where('anemia', '!=', 0)->where('anemia', '!=', null)->count() }},
-                                    {{ $students->where('anemia',0)->count() }}
+                                    {{ $students->count() }}
                                 ],
                                 ['Pulse', {{ $students->where('pulse', '!=', 0)->where('pulse', '!=', null)->count() }},
-                                    {{ $students->where('pulse',0)->count() }}
+                                    {{ $students->count() }}
                                 ],
                                  ['Overall', {{ $students->where('overall', '!=', 0)->where('overall', '!=', null)->count() }},
-                                    {{ $students->where('overall',0)->count() }}
+                                    {{ $students->count() }}
                                 ],
                             ]);
                            var view = new google.visualization.DataView(data);
@@ -222,7 +222,7 @@
                             var options = {
                                 title: 'শিক্ষার্থীদের ধারাবাহিক স্বাস্থ্য রিপোর্ট',
                                 chartArea: {
-                                    width: '70%'
+                                    width: '65%'
                                 },
                                  width: 1000,
                                 height: 1200,
