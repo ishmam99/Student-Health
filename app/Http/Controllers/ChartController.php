@@ -47,6 +47,8 @@ class ChartController extends Controller
     public function upazilaShow()
     {
         $upazilas = DB::table('upazilas')->get();
+       
+        
         return view('upazila',compact('upazilas'));
     }
     public function calendarShow()
@@ -66,6 +68,33 @@ class ChartController extends Controller
     }
     public function upazilaReport(Request $request)
     {
+        $check = [];
+        $years = [];
+        if($request->disease==null){
+             for($i=bn2en($request->year_from);$i<=bn2en($request->year_to);$i++)
+       {
+        $year =DB::table('student_healths')->where('year', en2bn($i))->get();
+        $years[]=$year;
+       }
+        }
+        else
+        {
+            
+            for ($i = bn2en($request->year_from); $i <= bn2en($request->year_to); $i++) {
+                $year = DB::table('student_healths')->where('year', en2bn($i))->where($request->disease, '>', 0)->get($request->disease);
+                $count = $year->where($request->disease,'>',0)->count();
+              
+                $sum = $year->where($request->disease,'>',0)->sum($request->disease);
+                $check[]=$sum;
+                $check[]=$count;
+                $avg = $sum/$count;
+                $check[] = $avg;
+                // $year = $year->where($request->disease,'>',0)->get($request->disease);
+                $years[] = $year;
+            }
+        }
+      
+       dd($check,$years);
         $name = "উপজেলা";
         $value = $request->upazila;
         $students = DB::table('student_healths')->where('upazila_name',$request->upazila)->get();
@@ -133,5 +162,11 @@ class ChartController extends Controller
        $all=[$years,$neat_clean,$muac,$skin_disease,$cough,$asthma,$diarrhoea,$jaundice,$infection,$epi_tt,$eye_test,$anemia,$pulse,$overall];
       
        return $all;
+    }
+    public function schoolList($id)
+    {
+       $schools = DB::table('users')->where('upazila_name',$id)->get();
+
+        return json_encode($schools);
     }
 }

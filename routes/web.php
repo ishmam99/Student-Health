@@ -54,6 +54,7 @@ Route::get('migrate-fresh', function () {
     Route::view('/', 'welcome')->name('welcome');
 Route::view('chart-view/', 'chart');
 // ->middleware('admin');
+Route::get('/school/{id}',[ChartController::class,'schoolList']);
     Route::get('student/individual', [ChartController::class, 'student'])->name('student.index');
     Route::get('/upazila',[ChartController::class,'upazilaShow'])->name('upazila.view');
 Route::get('/calendar', [ChartController::class, 'calendarShow'])->name('calendar.view');

@@ -274,9 +274,40 @@
                         </div>
                     </div>
                     <div class="col-12 p-5" id="chart_div" style="width: 1000px; height: 500px;"></div>
+                    <div class="col-12 p-5" id="curve_chart" style="width: 1000px; height: 500px;"></div>
                     {{-- <div id="chart_div"></div> --}}
                     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                    
                     <script type="text/javascript">
+                      google.charts.load('current', {'packages':['corechart']});
+                        google.charts.setOnLoadCallback(drawChart1);
+
+                        function drawChart1() {
+                            var data = google.visualization.arrayToDataTable([
+                            ['Year', 'Average'],
+                            ['2004',  1],
+                            ['2005',  3],
+                            ['2006',  5],
+                            ['2007',  2]
+                            ]);
+                            //   var view = new google.visualization.DataView(data);
+                            //             view.setColumns([0, 1, {
+                            //                 calc: 'stringify',
+                            //                 sourceColumn: 1,
+                            //                 type: 'string',
+                            //                 role: 'annotation'
+                            //             }]);
+                            var options = {
+                            title: 'পরিষ্কার পরিছন্নতাঃ',
+                            curveType: 'function',
+                            legend: 'none',
+                            pointSize:10
+                            };
+
+                            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+                            chart.draw(data, options);
+                        }
                         google.charts.load('current', {'packages':['bar']});
                         google.charts.setOnLoadCallback(drawChart);
 
