@@ -90,10 +90,10 @@
                     <div class="row">
                     
                     <div class="col-10" id="curve_chart" style="width: 1000px; height: 500px;"></div>
-                     <div class="col-2" style="margin-top:200px">
+                     <div class="col-10" >
                           
                             @foreach ($years as $keys=>$data)
-                                <li> {{en2bn($keys)}}({{en2bn(round($data,2))}})</li>
+                                <span> ({{en2bn($keys)}} ,{{en2bn(round($data,2))}}),</span>
                             @endforeach
                             
                           </div>
