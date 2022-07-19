@@ -63,7 +63,7 @@
       
       <select name="disease" class="form-control" id="school">
          <option value="" selected> --রোগ নির্বাচন করুন --</option>
-            <option value="neat_clean">পরিষ্কার পরিছন্নতা</option>
+            <option value="neat_clean">পরিষ্কার পরিচ্ছন্নতা</option>
             <option value="muac">পুষ্টিগত অবস্থান</option>
             <option value="skin_disease">চর্ম রোগ</option>
             <option value="cough">কাশি</option>
@@ -74,7 +74,7 @@
             <option value="epi_tt">ইপিআই টি.টি</option>
             <option value="eye_test">দৃষ্টি পরীক্ষা</option>
             <option value="anemia">রক্তশূন্যতা</option>
-            <option value="pulse">পালস</option>
+            <option value="pulse">পালস ও হার্ট বিটঃ</option>
       
       </select>
       <div class="col-3 float-right p-2 m-4">

@@ -68,38 +68,230 @@ class ChartController extends Controller
     }
     public function upazilaReport(Request $request)
     {
-        $check = [];
+        $test = 0;
         $years = [];
         if($request->disease==null){
+            $test =1;
              for($i=bn2en($request->year_from);$i<=bn2en($request->year_to);$i++)
        {
-        $year =DB::table('student_healths')->where('year', en2bn($i))->get();
-        $years[]=$year;
+                $year = [];
+                //Neat Clean
+                // $neat_clean_count = DB::table('student_healths')->where('neat_clean', '!=', 0)->where('neat_clean', '!=', null)->where('year', en2bn($i))->count();
+                // $neat_clean_sum = DB::table('student_healths')->where('neat_clean', '!=', 0)->where('neat_clean', '!=', null)->where('year', en2bn($i))->sum('neat_clean');
+                $neat_clean_all = $this->check('neat_clean',$i,$request->upazila,$request->school);
+                if($neat_clean_all->count() == 0)
+                {
+                    $neat_clean = 0;
+                }
+                else{
+                    $neat_clean = $neat_clean_all->sum('neat_clean')/$neat_clean_all->count();
+                }
+
+                //end -neat clean
+                //MUAC
+                // $muac_count =  DB::table('student_healths')->where('muac', '!=', 0)->where('muac', '!=', null)->where('year', en2bn($i))->count();
+                // $muac_sum =  DB::table('student_healths')->where('muac', '!=', 0)->where('muac', '!=', null)->where('year', en2bn($i))->sum('muac');
+                $muac_all = $this->check('muac', $i, $request->upazila, $request->school);
+                    if($muac_all->count()==0)
+                    $muac = 0;
+                    else
+                    $muac = $muac_all->sum('muac')/$muac_all->count();
+                //end muac
+                //Skin Disease 
+                // $skin_disease_count =  DB::table('student_healths')->where('skin_disease', '!=', 0)->where('skin_disease', '!=', null)->where('year', en2bn($i))->count();
+                // $skin_disease_sum=  DB::table('student_healths')->where('skin_disease', '!=', 0)->where('skin_disease', '!=', null)->where('year', en2bn($i))->sum('skin_disease');
+                $skin_disease_all = $this->check('skin_disease', $i, $request->upazila, $request->school);
+                if($skin_disease_all->count() == 0)
+                $skin_disease = 0;
+                else
+                $skin_disease = $skin_disease_all->sum('skin_disease')/ $skin_disease_all->count();
+                //end skin disease
+                //Coungh
+                // $cough_count =  DB::table('student_healths')->where('cough', '!=', 0)->where('cough', '!=', null)->where('year', en2bn($i))->count();
+                // $cough_sum =  DB::table('student_healths')->where('cough', '!=', 0)->where('cough', '!=', null)->where('year', en2bn($i))->sum('cough');
+                $cough_all = $this->check('cough', $i, $request->upazila, $request->school);
+                 if($cough_all->count() == 0)
+                $cough = 0;
+                else
+                $cough = $cough_all->sum('cough')/ $cough_all->count();
+                //end  cough
+
+                //Asthma
+                // $asthma_count =  DB::table('student_healths')->where('asthma', '!=', 0)->where('asthma', '!=', null)->where('year', en2bn($i))->count();
+                // $asthma_sum =  DB::table('student_healths')->where('asthma', '!=', 0)->where('asthma', '!=', null)->where('year', en2bn($i))->sum('asthma');
+                $asthma_all = $this->check('asthma', $i, $request->upazila, $request->school);
+                if ($asthma_all->count() == 0)
+                $asthma = 0;
+                else
+                $asthma = $asthma_all->sum('asthma') / $asthma_all->count();
+                //end  asthma
+
+
+                //Diarrhoea
+                // $diarrhoea_count =  DB::table('student_healths')->where('diarrhoea', '!=', 0)->where('diarrhoea', '!=', null)->where('year', en2bn($i))->count();
+                // $diarrhoea_sum =  DB::table('student_healths')->where('diarrhoea', '!=', 0)->where('diarrhoea', '!=', null)->where('year', en2bn($i))->sum('diarrhoea');
+                $diarrhoea_all = $this->check('diarrhoea', $i, $request->upazila, $request->school);
+                if ($diarrhoea_all->count() == 0)
+                $diarrhoea = 0;
+                else
+                $diarrhoea = $diarrhoea_all->sum('diarrhoea') / $diarrhoea_all->count();
+                //end diarrhoea
+
+                //Jaundice
+                // $jaundice_count =  DB::table('student_healths')->where('jaundice', '!=', 0)->where('jaundice', '!=', null)->where('year', en2bn($i))->count();
+                // $jaundice_sum =  DB::table('student_healths')->where('jaundice', '!=', 0)->where('jaundice', '!=', null)->where('year', en2bn($i))->sum('jaundice');
+                $jaundice_all = $this->check('jaundice', $i, $request->upazila, $request->school);
+                if ($jaundice_all->count() == 0)
+                $jaundice = 0;
+                else
+                $jaundice = $jaundice_all->sum('jaundice') / $jaundice_all->count();
+                //end jaundice
+
+                //Infection
+                // $infection_count =  DB::table('student_healths')->where('infection', '!=', 0)->where('infection', '!=', null)->where('year', en2bn($i))->count();
+                // $infection_sum =  DB::table('student_healths')->where('infection', '!=', 0)->where('infection', '!=', null)->where('year', en2bn($i))->sum('infection');
+                $infection_all = $this->check('infection', $i, $request->upazila, $request->school);
+                if ($infection_all->count() == 0)
+                $infection = 0;
+                else
+                $infection = $infection_all->sum('infection') / $infection_all->count();
+                //enf infection
+
+                //EPI TT
+                // $epi_tt_count =  DB::table('student_healths')->where('epi_tt', '!=', 0)->where('epi_tt', '!=', null)->where('year', en2bn($i))->count();
+                // $epi_tt_sum =  DB::table('student_healths')->where('epi_tt', '!=', 0)->where('epi_tt', '!=', null)->where('year', en2bn($i))->sum('epi_tt');
+                $epi_tt_all = $this->check('epi_tt', $i, $request->upazila, $request->school);
+                if ($epi_tt_all->count() == 0)
+                $epi_tt = 0;
+                else
+                $epi_tt = $epi_tt_all->sum('epi_tt') / $epi_tt_all->count();
+                //end epi tt
+
+                //Eye Test
+                // $eye_test_count =  DB::table('student_healths')->where('eye_test', '!=', 0)->where('eye_test', '!=', null)->where('year', en2bn($i))->count();
+                // $eye_test_sum =  DB::table('student_healths')->where('eye_test', '!=', 0)->where('eye_test', '!=', null)->where('year', en2bn($i))->sum('eye_test');
+                $eye_test_all = $this->check('eye_test', $i, $request->upazila, $request->school);
+                if ($eye_test_all->count() == 0)
+                $eye_test = 0;
+                else
+                $eye_test = $eye_test_all->sum('eye_test') / $eye_test_all->count();
+                //end eye test
+
+                //Aenamia
+                // $anemia_count =  DB::table('student_healths')->where('anemia', '!=', 0)->where('anemia', '!=', null)->where('year', en2bn($i))->count();
+                // $anemia_sum =  DB::table('student_healths')->where('anemia', '!=', 0)->where('anemia', '!=', null)->where('year', en2bn($i))->sum('anemia');
+                $anemia_all = $this->check('neat_clean', $i, $request->upazila, $request->school);
+                if ($anemia_all->count() == 0)
+                $anemia = 0;
+                else
+                $anemia = $anemia_all->sum('anemia') / $anemia_all->count();
+                //end anemia
+
+                //Pulse
+                // $pulse_count =  DB::table('student_healths')->where('pulse', '!=', 0)->where('pulse', '!=', null)->where('year', en2bn($i))->count();
+                // $pulse_sum =  DB::table('student_healths')->where('pulse', '!=', 0)->where('pulse', '!=', null)->where('year', en2bn($i))->sum('pulse');
+                $pulse_all = $this->check('pulse', $i, $request->upazila, $request->school);
+                if ($pulse_all->count() == 0)
+                $pulse = 0;
+                else
+                $pulse = $pulse_all->sum('pulse') / $pulse_all->count();
+                
+      
+        $years['পরিষ্কার পরিছন্নতাঃ'][$i]=$neat_clean;
+        $years['পুষ্টিগত অবস্থানঃ'][$i]  = $muac;
+        $years['চর্ম রোগঃ'][$i] = $skin_disease;
+        $years['কাশিঃ'][$i] = $cough;
+        $years['হাঁপানিঃ'][$i] = $asthma;
+        $years['ডায়ারিয়াঃ'][$i] = $diarrhoea;
+        $years['জন্ডিসঃ'][$i] = $jaundice;
+        $years['সংক্রমণঃ'][$i] = $infection;
+        $years['ইপিআই ও টি.টিঃ'][$i] = $epi_tt;
+        $years['দৃষ্টি পরীক্ষাঃ'][$i] = $eye_test;
+        $years['রক্তশূন্যতাঃ'][$i] = $anemia;
+        $years['পালস ও হার্ট বিটঃ'][$i] = $pulse;
+        // $years[$i] = $year;
        }
         }
         else
         {
+            $test = 2;
             
             for ($i = bn2en($request->year_from); $i <= bn2en($request->year_to); $i++) {
-                $year = DB::table('student_healths')->where('year', en2bn($i))->where($request->disease, '>', 0)->get($request->disease);
+                if($request->school == null)
+                {
+                    if ($request->upazila == null)
+                    {
+                         $year = DB::table('student_healths')->where('year', en2bn($i))->where($request->disease, '>', 0)->get($request->disease);
+                        $students = DB::table('student_healths')->count();
+                    }
+                    
+                   else{
+                      $year = DB::table('student_healths')->where([['year', en2bn($i)],['upazila_name',$request->upazila]])->where($request->disease, '>', 0)->get($request->disease);
+                        $students = DB::table('student_healths')->where('upazila_name', $request->upazila)->count();
+                   }
+                   
+                }
+                else
+                {
+                     $year = DB::table('student_healths')->where([['year', en2bn($i)], ['upazila_name', $request->upazila],['school_id',$request->school]])->where($request->disease, '>', 0)->get($request->disease);
+                    $school = DB::table('users')->where('id', $request->school)->first()->name;
+                    $students = DB::table('student_healths')->where('school_id', $request->school)->count();
+                }
+               
+
                 $count = $year->where($request->disease,'>',0)->count();
               
                 $sum = $year->where($request->disease,'>',0)->sum($request->disease);
                 $check[]=$sum;
                 $check[]=$count;
-                $avg = $sum/$count;
-                $check[] = $avg;
+                if($count==0)
+                {
+                    $avg = 0;
+                }
+                else{
+                      $avg = $sum/$count;
+                }
+            //   dd($year);
+                // $check[] = $avg;
                 // $year = $year->where($request->disease,'>',0)->get($request->disease);
-                $years[] = $year;
+                $years[$i] =  $avg;
             }
         }
-      
-       dd($check,$years);
+      $disease = $request->disease;
+       
         $name = "উপজেলা";
         $value = $request->upazila;
-        $students = DB::table('student_healths')->where('upazila_name',$request->upazila)->get();
-        $student = $this->destructure($students);
-       return view('upazila_report',compact('students', 'name', 'value','student'));
+        if($request->school!=null){
+             $school = DB::table('users')->where('id', $request->school)->first()->name;
+        }
+       else $school =null;
+              if ($request->upazila == null)
+                    {
+                        
+                        $students = DB::table('student_healths')->count();
+                    }
+                    elseif($request->school != null)
+                {
+                   
+                    $students = DB::table('student_healths')->where('school_id', $request->school)->count();
+                }
+                    
+                   else{
+                    
+                        $students = DB::table('student_healths')->where('upazila_name', $request->upazila)->count();
+                   }
+                   
+                
+    // dd($years);
+       if($test == 2)
+       {
+        
+        $disease = $this->disease($request->disease);
+          return view('line_chart_single',compact('students', 'name', 'disease','value','years','school'));
+       }
+     
+       else
+        return view('line_chart', compact('students', 'name', 'value', 'years','school'));
     }
     public function ageReport(Request $request)
     {
@@ -168,5 +360,64 @@ class ChartController extends Controller
        $schools = DB::table('users')->where('upazila_name',$id)->get();
 
         return json_encode($schools);
+    }
+    public function disease($name)
+    {
+         
+         switch ($name) {
+            case "neat_clean":
+                return 'পরিষ্কার পরিচ্ছন্নতা';
+                break;
+            case "muac":
+                return 'পুষ্টিগত অবস্থান';
+                break;
+            case "skin_disease":
+                return 'চর্ম রোগ';
+                break;
+            case "cough":
+                return 'কাশি';
+                break;
+            case "asthma":
+                return 'হাঁপানি';
+                break;
+            case "diarrhoea":
+                return 'ডায়ারিয়া';
+                break;
+            case "jaundice":
+                return 'জন্ডিস';
+                break;
+            case "infection":
+                return 'সংক্রমণ';
+                break;
+            case "epi_tt":
+                return 'ইপিআই টি.টি';
+                break;
+            case "eye_test":
+                return 'দৃষ্টি পরীক্ষা';
+                break;
+            case "anemia":
+                return 'রক্তশূন্যতা';
+                break;
+            case "pulse":
+                return 'পালস ও হার্ট বিটঃ';
+                break;
+        }
+    }
+    public function check($disease,$year,$upazila,$school)
+    {
+        if ($school == null) {
+            if ($upazila == null) {
+                $year_data = DB::table('student_healths')->where('year', en2bn($year))->where($disease, '>', 0)->get($disease);
+                
+            } else {
+                $year_data = DB::table('student_healths')->where([['year', en2bn($year)], ['upazila_name', $upazila]])->where($disease, '>', 0)->get($disease);
+              
+            }
+        } else {
+            $year_data = DB::table('student_healths')->where([['year', en2bn($year)], ['upazila_name', $upazila], ['school_id', $school]])->where($disease, '>', 0)->get($disease);
+           
+            
+        }
+        return $year_data;
     }
 }
