@@ -23,6 +23,14 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="{{ route('report.view') }}"
+                    class="nav-link {{ request()->routeIs('report.*') ? 'active menu-open' : null }}">
+                    <i class="far fa-folder nav-icon"></i>
+                    <p>সামগ্রিক রিপোর্ট </p>
+                </a>
+                
+            </li> 
+            <li class="nav-item">
                 <a href="{{ route('student.index') }}"
                     class="nav-link {{ request()->routeIs('student.*') ? 'active menu-open' : null }}">
                     <i class="far fa-folder nav-icon"></i>
