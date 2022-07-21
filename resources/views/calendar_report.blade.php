@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">উপজেলা ভিত্তিক রিপোর্ট</h1>
+                    <h1 class="m-0 text-dark">ক্যালেন্ডার বর্ষ ভিত্তিক রিপোর্ট</h1>
                     <input type="button" class="btn btn-success" onclick="printDiv('printableArea')"
                         value="প্রিন্ট বের করুন" />
                 </div>
@@ -26,7 +26,7 @@
                         <h2><b> জেলা প্রশাসকের কার্যালয়,লক্ষ্মীপুর</b></h2>
                         <h3><b> স্কুল হেলথ কার্ড</b></h3>
                         <h4><b> গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</b></h4>
-                        <h3>উপজেলা ভিত্তিক শিক্ষার্থীদের ধারাবাহিক স্বাস্থ্য রিপোর্ট</h3>
+                        <h3>ক্যালেন্ডার বর্ষ ভিত্তিক শিক্ষার্থীদের ধারাবাহিক স্বাস্থ্য রিপোর্ট</h3>
                     </div>
                     <div class="col-2"> <img src="{{ asset('svg/bgvv.png') }}" alt=""
                             style="height: 120px;width:120px;padding-left:15px">
@@ -35,7 +35,7 @@
                     @if ($disease_check == 2)
                      <div class="col-12 row area ">
                           <h4 >{{$disease[0]}}</h4>
-                      @for ($i = date('Y'); $i > date('Y')-5; $i--)
+                   
                           
                     
                         <div class="col-12 p-3 ml-3" style="height: 300px">
@@ -46,7 +46,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td style="width:1.5in">{{en2bn($i)}}ঃ</td>
+                                    <td style="width:1.5in">{{en2bn($value)}}ঃ</td>
 
 
                                 </tr>
@@ -74,11 +74,11 @@
                                      <tr>
                                       <td class="text-center">{{$upazila->name}}</td>
                                     
-                                       <td class="text-center">{{en2bn(DB::table('student_healths')->where('year',en2bn($i))->where('upazila_name',$upazila->name)->where($disease[1],1)->count())}}</td>
-                                       <td class="text-center">{{en2bn(DB::table('student_healths')->where('year',en2bn($i))->where('upazila_name',$upazila->name)->where($disease[1],2)->count())}}</td>
-                                       <td class="text-center">{{en2bn(DB::table('student_healths')->where('year',en2bn($i))->where('upazila_name',$upazila->name)->where($disease[1],3)->count())}}</td>
-                                       <td class="text-center">{{en2bn(DB::table('student_healths')->where('year',en2bn($i))->where('upazila_name',$upazila->name)->where($disease[1],4)->count())}}</td>
-                                       <td class="text-center">{{en2bn(DB::table('student_healths')->where('year',en2bn($i))->where('upazila_name',$upazila->name)->where($disease[1],5)->count())}}</td>
+                                       <td class="text-center">{{en2bn(DB::table('student_healths')->where('year',en2bn($value))->where('upazila_name',$upazila->name)->where($disease[1],1)->count())}}</td>
+                                       <td class="text-center">{{en2bn(DB::table('student_healths')->where('year',en2bn($value))->where('upazila_name',$upazila->name)->where($disease[1],2)->count())}}</td>
+                                       <td class="text-center">{{en2bn(DB::table('student_healths')->where('year',en2bn($value))->where('upazila_name',$upazila->name)->where($disease[1],3)->count())}}</td>
+                                       <td class="text-center">{{en2bn(DB::table('student_healths')->where('year',en2bn($value))->where('upazila_name',$upazila->name)->where($disease[1],4)->count())}}</td>
+                                       <td class="text-center">{{en2bn(DB::table('student_healths')->where('year',en2bn($value))->where('upazila_name',$upazila->name)->where($disease[1],5)->count())}}</td>
                                      </tr>  
                                    
                                    
@@ -93,20 +93,20 @@
 
 
                         </div>
-                          @endfor
+                        
                     </div>
                     @else
                    
                         @foreach ($disease as $key=>$item)
-                             <div class="col-12 row @if($key!='neat_clean') pt-4 @endif" >
-                    <h4>{{$item}}</h4>
-                      @for ($i = date('Y'); $i > date('Y')-5; $i--)
+                             <div class="col-12 row pt-4" >
+                    {{-- <h6></h6> --}}
+                     
                           
                     
                         <div class=" col-10 p-3 " style="height: 290px;margin-left:100px">
 
                            
-                                    <h6>{{en2bn($i)}}ঃ</h6>
+                                    <h5 class="font-weight-bold text-center">{{en2bn($value)}}ঃ{{$item}}</h5>
 
 
                           
@@ -133,11 +133,11 @@
                                      <tr>
                                       <td class="text-center">{{$upazila->name}}</td>
                                     
-                                       <td class="text-center">{{en2bn(DB::table('student_healths')->where('year',en2bn($i))->where('upazila_name',$upazila->name)->where($key,1)->count())}}</td>
-                                       <td class="text-center">{{en2bn(DB::table('student_healths')->where('year',en2bn($i))->where('upazila_name',$upazila->name)->where($key,2)->count())}}</td>
-                                       <td class="text-center">{{en2bn(DB::table('student_healths')->where('year',en2bn($i))->where('upazila_name',$upazila->name)->where($key,3)->count())}}</td>
-                                       <td class="text-center">{{en2bn(DB::table('student_healths')->where('year',en2bn($i))->where('upazila_name',$upazila->name)->where($key,4)->count())}}</td>
-                                       <td class="text-center">{{en2bn(DB::table('student_healths')->where('year',en2bn($i))->where('upazila_name',$upazila->name)->where($key,5)->count())}}</td>
+                                       <td class="text-center">{{en2bn(DB::table('student_healths')->where('year',en2bn($value))->where('upazila_name',$upazila->name)->where($key,1)->count())}}</td>
+                                       <td class="text-center">{{en2bn(DB::table('student_healths')->where('year',en2bn($value))->where('upazila_name',$upazila->name)->where($key,2)->count())}}</td>
+                                       <td class="text-center">{{en2bn(DB::table('student_healths')->where('year',en2bn($value))->where('upazila_name',$upazila->name)->where($key,3)->count())}}</td>
+                                       <td class="text-center">{{en2bn(DB::table('student_healths')->where('year',en2bn($value))->where('upazila_name',$upazila->name)->where($key,4)->count())}}</td>
+                                       <td class="text-center">{{en2bn(DB::table('student_healths')->where('year',en2bn($value))->where('upazila_name',$upazila->name)->where($key,5)->count())}}</td>
                                      </tr>  
                                    
                                    
@@ -148,7 +148,7 @@
                             </div>
 
                         </div>
-                          @endfor
+                         
                   </div>
                         @endforeach
                   

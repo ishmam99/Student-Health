@@ -305,10 +305,31 @@ class ChartController extends Controller
     }
     public function calendarReport(Request $request)
     {
-        $name = "ক্যালেন্ডার বর্ষ";
+        $upazilas = DB::table('upazilas')->get('name');
+        if ($request->disease == null) {
+            $disease_check = 1;
+            $disease['neat_clean'] = 'পরিষ্কার পরিচ্ছন্নতা';
+
+            $disease['muac'] = 'পুষ্টিগত অবস্থান';
+
+            $disease['skin_disease'] = 'চর্ম রোগ';
+            $disease['cough'] = 'কাশি';
+            $disease['asthma'] = 'হাঁপানি';
+            $disease['diarrhoea'] = 'ডায়ারিয়া';
+            $disease['jaundice'] = 'জন্ডিস';
+            $disease['infection'] = 'সংক্রমণ';
+            $disease['epi_tt'] = 'ইপিআই টি.টি';
+            $disease['eye_test'] = 'দৃষ্টি পরীক্ষা';
+            $disease['anemia'] = 'রক্তশূন্যতা';
+            $disease['pulse'] = 'পালস ও হার্ট বিটঃ';
+        } else {
+            $disease_check = 2;
+            $disease[] = $this->disease($request->disease);
+            $disease[] = $request->disease;
+        }
         $value = $request->year;
         $students = DB::table('student_healths')->where('year', $request->year)->get();
-        return view('upazila_report', compact('students','name', 'value'));
+        return view('calendar_report', compact('disease','upazilas','disease_check','value'));
     }
     public function destructure($students)
     {
