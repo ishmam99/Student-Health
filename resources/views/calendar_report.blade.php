@@ -34,30 +34,20 @@
                     </div>
                     @if ($disease_check == 2)
                      <div class="col-12 row area ">
-                          <h4 >{{$disease[0]}}</h4>
+                          <h4 style="margin-top:150px;margin-bottom:100px ">ক্যালেন্ডার বর্ষঃ{{en2bn($value)}}</h4>
                    
                           
                     
                         <div class="col-12 p-3 ml-3" style="height: 300px">
 
-                            <table class="mb-3">
-                                <tr>
-
-                                </tr>
-
-                                <tr>
-                                    <td style="width:1.5in">{{en2bn($value)}}ঃ</td>
-
-
-                                </tr>
-                            </table>
+                              <h5 class="font-weight-bold text-center">{{$disease[0]}}</h5>
 
 
                             <div class="justify-content-center pl-5 ml-5" >
                                 <table class="table-bordered">
                                   <thead>
                                     <th class="text-center">উপজেলা</th>
-                                   <th><th> <th class="text-center">রেটিং জোন</th>
+                                   <th><th> <th class="text-center">রেটিং/ জন</th>
                                     </th></th><th></th><th></th>
                                       <tr>
                                         <th></th>
@@ -96,7 +86,7 @@
                         
                     </div>
                     @else
-                   
+                    <h4 style="margin-top:150px;margin-bottom:100px ">ক্যালেন্ডার বর্ষঃ{{en2bn($value)}}</h4>
                         @foreach ($disease as $key=>$item)
                              <div class="col-12 row pt-4" >
                     {{-- <h6></h6> --}}
@@ -106,7 +96,7 @@
                         <div class=" col-10 p-3 " style="height: 290px;margin-left:100px">
 
                            
-                                    <h5 class="font-weight-bold text-center">{{en2bn($value)}}ঃ{{$item}}</h5>
+                                    <h5 class="font-weight-bold text-center">{{$item}}</h5>
 
 
                           

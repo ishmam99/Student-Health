@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-2"> <img src="{{ asset('svg/ri_1.png') }}" alt=""
                             style="height: 130px;width:130px"></div>
-                    <div class="col-8 text-center" style="height: 200px">
+                    <div class="col-8 text-center" style="height: 210px">
                         <h2><b> জেলা প্রশাসকের কার্যালয়,লক্ষ্মীপুর</b></h2>
                         <h3><b> স্কুল হেলথ কার্ড</b></h3>
                         <h4><b> গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</b></h4>
@@ -34,26 +34,18 @@
                     </div>
                     @if ($disease_check == 2)
                      <div class="col-12 row area ">
-                          <h4 >{{$disease[0]}}</h4>
+                          <h4 style="margin-top:150px;margin-bottom:100px ">{{$disease[0]}}</h4>
                       @for ($i = date('Y'); $i > date('Y')-5; $i--)
                           
                     
                         <div class="col-12 p-3 ml-3" style="height: 300px">
 
-                            <table class="mb-3">
-                                <tr>
-
-                                </tr>
-
-                                <tr>
-                                    <td style="width:1.5in">{{en2bn($i)}}ঃ</td>
+                     
+                                    <h5 class="font-weight-bold text-center m-5 pt-3">ক্যালেন্ডার বর্ষঃ{{en2bn($i)}}</h5>
 
 
-                                </tr>
-                            </table>
 
-
-                            <div class="justify-content-center pl-5 ml-5" >
+                            <div class="justify-content-center pl-5" style="margin-left: 100px" >
                                 <table class="table-bordered">
                                   <thead>
                                     <th class="text-center">উপজেলা</th>
@@ -98,25 +90,30 @@
                     @else
                    
                         @foreach ($disease as $key=>$item)
-                             <div class="col-12 row @if($key!='neat_clean') pt-4 @endif" >
-                    <h4>{{$item}}</h4>
-                      @for ($i = date('Y'); $i > date('Y')-5; $i--)
+                             <div class="col-12 row " @if ($key!='neat_clean')
+                                 style="margin-top: 320px"
+                                 @else
+                                 style="margin-top: 20px"
+                             @endif  >
+                  <div class="col-4">  <h4>{{$item}}</h4></div>
+                  <div class="col-8">
+                      @for ($i = date('Y'); $i > date('Y')-4; $i--)
                           
                     
-                        <div class=" col-10 p-3 " style="height: 290px;margin-left:100px">
+                        <div class=" col-12 " style="padding-top:40px" >
 
                            
-                                    <h6>{{en2bn($i)}}ঃ</h6>
+                                 <h5 class="font-weight-bold text-center ">ক্যালেন্ডার বর্ষঃ{{en2bn($i)}}</h5>
 
 
                           
 
 
-                            <div class="ml-5">
+                            <div class="">
                                 <table class="table-bordered">
                                   <thead>
                                     <th class="text-center">উপজেলা</th>
-                                   <th><th> <th class="text-center">রেটিং জোন</th>
+                                   <th><th> <th class="text-center">রেটিং /জন</th>
                                     </th></th><th></th><th></th>
                                       <tr>
                                         <th></th>
@@ -149,6 +146,7 @@
 
                         </div>
                           @endfor
+                          </div>
                   </div>
                         @endforeach
                   
